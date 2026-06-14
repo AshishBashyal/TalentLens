@@ -4,7 +4,7 @@ TalentLens is an AI-powered Job Market Intelligence Platform designed to help st
 
 The platform will collect job postings from multiple public sources, process them into structured datasets, extract insights from unstructured descriptions, and present business-grade intelligence about skills, salaries, hiring demand, technology adoption, and regional job market movement.
 
-TalentLens is intentionally being built in phases. Phase 1 focuses on the foundation: project structure, documentation, database design, architecture, and a simple polished landing page. Advanced analytics, NLP, and machine learning will be introduced only after the data pipeline and storage layers are mature.
+TalentLens is intentionally being built in phases. Phase 1 focused on project structure, documentation, database design, architecture, and a simple polished landing page. Phase 2 begins the development foundation for data collection, storage, and API readiness. Advanced analytics, NLP, and machine learning will be introduced only after the data pipeline and storage layers are mature.
 
 ## Product Goals
 
@@ -33,18 +33,20 @@ Recruiters can monitor demand, skill shortages, company hiring activity, and mar
 
 Businesses can use TalentLens to understand labor market conditions, technology adoption, and workforce planning signals.
 
-## Phase 1 Scope
+## Current Phase
 
-Phase 1 includes:
+TalentLens is now entering Phase 2: data collection and storage foundation.
 
-- Professional project documentation.
-- Scalable repository structure.
-- Initial database design.
-- High-level system architecture.
-- Roadmap for future phases.
-- Static landing page using HTML, CSS, and JavaScript.
+Current Phase 2 work includes:
 
-Phase 1 does not include backend implementation, production data scraping, dashboards, NLP, or machine learning models.
+- Python dependency setup.
+- FastAPI application foundation.
+- PostgreSQL schema migration draft.
+- Seed data for planned job sources.
+- Local development setup documentation.
+- Responsible data collection planning.
+
+The API currently exposes only a health endpoint. Real ingestion endpoints and source connectors will be added after review.
 
 ## Technology Direction
 
@@ -77,41 +79,41 @@ Phase 1 does not include backend implementation, production data scraping, dashb
 
 ```text
 TalentLens/
-├── api/
-├── data/
-│   ├── external/
-│   ├── interim/
-│   ├── processed/
-│   └── raw/
-├── data_collection/
-│   ├── connectors/
-│   └── scrapers/
-├── data_processing/
-│   ├── cleaning/
-│   ├── enrichment/
-│   └── validation/
-├── database/
-│   ├── migrations/
-│   ├── models/
-│   └── seeds/
-├── dashboard/
-│   └── landing-page/
-├── docs/
-├── machine_learning/
-│   ├── experiments/
-│   ├── features/
-│   └── models/
-├── nlp/
-│   ├── extraction/
-│   └── taxonomies/
-├── reports/
-├── scripts/
-├── tests/
-├── ARCHITECTURE.md
-├── DATABASE_DESIGN.md
-├── PROJECT_VISION.md
-├── README.md
-└── ROADMAP.md
+|-- api/
+|-- data/
+|   |-- external/
+|   |-- interim/
+|   |-- processed/
+|   `-- raw/
+|-- data_collection/
+|   |-- connectors/
+|   `-- scrapers/
+|-- data_processing/
+|   |-- cleaning/
+|   |-- enrichment/
+|   `-- validation/
+|-- database/
+|   |-- migrations/
+|   |-- models/
+|   `-- seeds/
+|-- dashboard/
+|   `-- landing-page/
+|-- docs/
+|-- machine_learning/
+|   |-- experiments/
+|   |-- features/
+|   `-- models/
+|-- nlp/
+|   |-- extraction/
+|   `-- taxonomies/
+|-- reports/
+|-- scripts/
+|-- tests/
+|-- ARCHITECTURE.md
+|-- DATABASE_DESIGN.md
+|-- PROJECT_VISION.md
+|-- README.md
+`-- ROADMAP.md
 ```
 
 Each folder is intentionally separated by responsibility so the platform can grow without mixing scraping logic, processing logic, database assets, API code, analytics, and ML experiments.
@@ -124,11 +126,47 @@ Open the static landing page at:
 dashboard/landing-page/index.html
 ```
 
-No backend server is required for Phase 1.
+No backend server is required for the landing page.
+
+## Local Development
+
+Create a virtual environment and install dependencies:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Run the API foundation:
+
+```powershell
+uvicorn api.main:app --reload
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+More setup details are in `docs/LOCAL_SETUP.md`.
+
+## Database Foundation
+
+The first PostgreSQL schema draft is in:
+
+```text
+database/migrations/001_initial_schema.sql
+```
+
+Planned job source seed data is in:
+
+```text
+database/seeds/job_sources.sql
+```
 
 ## Current Status
 
-TalentLens is in Phase 1: foundation and planning.
-
-Next phases should begin only after reviewing and approving the documentation, structure, and landing page.
+TalentLens is in early Phase 2. The foundation for API configuration, database schema planning, and responsible data collection documentation is in place.
 

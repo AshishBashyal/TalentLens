@@ -4,7 +4,7 @@
 
 TalentLens will use PostgreSQL as the primary structured data store. The database design should support job posting storage, source traceability, skill extraction, salary analysis, location trends, company activity, and future machine learning workflows.
 
-The initial design is conceptual and intended for Phase 1 planning. Physical migrations will be added in a later phase.
+The initial design began as conceptual Phase 1 planning. Phase 2 now includes the first SQL migration draft at `database/migrations/001_initial_schema.sql`.
 
 ## Design Principles
 
@@ -202,7 +202,21 @@ Initial quality checks should include:
 - Experience maximum should not be less than experience minimum.
 - Skill names should map to a normalized taxonomy.
 
-## Phase 1 Boundary
+## Migration Status
 
-This document defines the intended schema and database thinking. Actual SQL migrations, ORM models, and seed data will be created in a later phase after approval.
+The first migration draft creates:
 
+- Job sources.
+- Companies.
+- Locations.
+- Jobs.
+- Salaries.
+- Skills.
+- Job-to-skill relationships.
+- Certifications.
+- Job-to-certification relationships.
+- Initial analytical indexes.
+
+Seed data for planned sources lives in `database/seeds/job_sources.sql`.
+
+These SQL files are ready for review before database automation is added.

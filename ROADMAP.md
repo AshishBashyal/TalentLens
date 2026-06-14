@@ -8,7 +8,7 @@ Each phase should produce usable, reviewable progress while keeping the architec
 
 ## Phase 1: Foundation
 
-Status: In progress
+Status: Complete
 
 Goals:
 
@@ -39,6 +39,8 @@ Out of scope:
 
 ## Phase 2: Data Collection and Storage
 
+Status: Started
+
 Goals:
 
 - Implement responsible data collection from selected sources.
@@ -49,6 +51,11 @@ Goals:
 
 Candidate deliverables:
 
+- Python and FastAPI project foundation.
+- Local setup documentation.
+- Initial PostgreSQL migration draft.
+- Seed data for planned job sources.
+- Responsible data collection plan.
 - Source connector interfaces.
 - Initial collection scripts.
 - Raw data storage conventions.
@@ -137,4 +144,3 @@ Review questions:
 ## Near-Term Next Step
 
 After Phase 1 approval, the next logical step is to select the first job source and design a minimal data collection workflow that respects source policies and stores raw data safely.
-

@@ -102,6 +102,8 @@ Future responsibilities:
 
 FastAPI will expose structured data and insights to frontend clients, dashboards, and reporting tools.
 
+The current API foundation includes a minimal health endpoint so local setup and deployment checks have a stable target before business endpoints are introduced.
+
 Future API responsibilities:
 
 - Job search and filtering.
@@ -207,7 +209,19 @@ TalentLens should prioritize:
 - Testable business logic.
 - Extensible analytics interfaces.
 
+## Phase 2 Foundation Boundary
+
+Phase 2 begins with project setup, schema planning, API readiness, and data collection design. Real source connectors should be added one at a time after the source access method is reviewed.
+
+Current foundation files:
+
+- `api/main.py` defines the FastAPI application and health check.
+- `api/config.py` centralizes environment-based settings.
+- `database/migrations/001_initial_schema.sql` drafts the initial PostgreSQL schema.
+- `database/seeds/job_sources.sql` records planned job sources.
+- `docs/LOCAL_SETUP.md` documents local development setup.
+- `docs/DATA_COLLECTION_PLAN.md` documents responsible collection guidelines.
+
 ## Phase 1 Architecture Boundary
 
 Phase 1 should not include backend routes, real scraping code, ML models, or dashboards. It establishes the structure and design needed to build those features responsibly in later phases.
-
