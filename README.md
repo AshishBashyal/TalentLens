@@ -43,6 +43,7 @@ Current Phase 2 work includes:
 - FastAPI application foundation.
 - PostgreSQL schema migration draft.
 - Seed data for planned job sources.
+- Local sample ingestion workflow.
 - Local development setup documentation.
 - Responsible data collection planning.
 
@@ -152,6 +153,22 @@ http://127.0.0.1:8000/health
 
 More setup details are in `docs/LOCAL_SETUP.md`.
 
+Preview the local sample ingestion flow:
+
+```powershell
+python scripts/preview_ingestion.py
+```
+
+This reads `data/samples/sample_jobs.csv`, validates required fields, normalizes basic job text and skills, and prints a short summary. It does not write to the database yet.
+
+The dataset contract is documented in `docs/DATASET_SPECIFICATION.md`.
+
+Preview local Kaggle dataset ingestion without copying raw CSVs:
+
+```powershell
+python scripts/preview_kaggle_ingestion.py "C:\Users\ashis\Downloads\Datasets" --limit 10
+```
+
 ## Database Foundation
 
 The first PostgreSQL schema draft is in:
@@ -169,4 +186,3 @@ database/seeds/job_sources.sql
 ## Current Status
 
 TalentLens is in early Phase 2. The foundation for API configuration, database schema planning, and responsible data collection documentation is in place.
-

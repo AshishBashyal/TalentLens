@@ -56,6 +56,7 @@ Candidate deliverables:
 - Initial PostgreSQL migration draft.
 - Seed data for planned job sources.
 - Responsible data collection plan.
+- Local sample ingestion workflow.
 - Source connector interfaces.
 - Initial collection scripts.
 - Raw data storage conventions.

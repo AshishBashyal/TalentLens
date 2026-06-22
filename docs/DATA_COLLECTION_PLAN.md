@@ -71,5 +71,62 @@ Cleaned records should map toward the database schema:
 
 ## Next Implementation Step
 
-After this foundation is approved, the next step is to select the first source and create a minimal connector interface with a small sample ingestion workflow.
+The first safe implementation step is now in place:
 
+- `data_collection/contracts.py` defines raw and normalized job posting contracts.
+- `data_collection/connectors/base.py` defines the connector interface.
+- `data_collection/connectors/csv_sample.py` provides a local CSV connector.
+- `data_processing/validation/jobs.py` validates minimum raw job fields.
+- `data_processing/cleaning/jobs.py` normalizes text and job titles.
+- `data/samples/sample_jobs.csv` provides safe local sample data.
+- `scripts/preview_ingestion.py` previews the local ingestion flow.
+- `docs/DATASET_SPECIFICATION.md` documents the dataset contract.
+
+The next step is to select the first real source and implement it behind the same connector interface.
+
+## Kaggle Dataset Candidate
+
+A local Kaggle dataset has been inspected as the first realistic ingestion candidate. It contains job postings, companies, skills, industries, salaries, benefits, specialities, and employee counts.
+
+Assessment:
+
+```text
+docs/KAGGLE_DATASET_ASSESSMENT.md
+```
+
+Profiling helper:
+
+```powershell
+python scripts/profile_csv_dataset.py "C:\Users\ashis\Downloads\Datasets"
+```
+
+Do not commit the raw CSV files unless the Kaggle license clearly permits redistribution.
+
+Local raw-data placeholder:
+
+```text
+data/raw/kaggle_jobs/README.md
+```
+
+Kaggle ingestion preview:
+
+```powershell
+python scripts/preview_kaggle_ingestion.py "C:\Users\ashis\Downloads\Datasets" --limit 10
+```
+
+The connector reads `postings.csv` from the provided directory and maps records into the shared `RawJobPosting` contract.
+
+## Preview the Sample Flow
+
+Run:
+
+```powershell
+python scripts/preview_ingestion.py
+```
+
+Expected behavior:
+
+- Load raw rows from `data/samples/sample_jobs.csv`.
+- Validate required fields.
+- Normalize job titles, text fields, employment type, and skills.
+- Print a short summary without writing to the database.
