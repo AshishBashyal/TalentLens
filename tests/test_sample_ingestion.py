@@ -1,7 +1,12 @@
 from pathlib import Path
 
 from data_collection.connectors.csv_sample import CsvSampleConnector
-from data_processing.cleaning.jobs import normalize_job_posting, normalize_title, split_skills
+from data_processing.cleaning.jobs import (
+    normalize_job_posting,
+    normalize_posted_date,
+    normalize_title,
+    split_skills,
+)
 from data_processing.validation.jobs import validate_raw_job
 
 
@@ -29,6 +34,10 @@ def test_normalized_title_is_search_friendly() -> None:
 
 def test_skills_are_split_and_normalized() -> None:
     assert split_skills("Python, SQL,  Tableau ") == ("python", "sql", "tableau")
+
+
+def test_epoch_milliseconds_are_normalized_to_iso_date() -> None:
+    assert normalize_posted_date("1713397508000.0") == "2024-04-17"
 
 
 def test_raw_job_can_be_normalized() -> None:

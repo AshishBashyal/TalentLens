@@ -116,6 +116,14 @@ python scripts/preview_kaggle_ingestion.py "C:\Users\ashis\Downloads\Datasets" -
 
 The connector reads `postings.csv` from the provided directory and maps records into the shared `RawJobPosting` contract.
 
+Database mapping preview:
+
+```powershell
+python scripts/preview_kaggle_database_mapping.py "C:\Users\ashis\Downloads\Datasets" --limit 25
+```
+
+This prepares database-shaped records in memory and helps validate the ingestion design before writing to PostgreSQL.
+
 ## Preview the Sample Flow
 
 Run:

@@ -219,4 +219,13 @@ The first migration draft creates:
 
 Seed data for planned sources lives in `database/seeds/job_sources.sql`.
 
+The second migration draft adds market intelligence tables for:
+
+- Industries.
+- Job-to-industry relationships.
+- Job benefits.
+- Company specialities.
+- Employee and follower counts.
+- Source company identifiers.
+
 These SQL files are ready for review before database automation is added.

@@ -169,6 +169,12 @@ Preview local Kaggle dataset ingestion without copying raw CSVs:
 python scripts/preview_kaggle_ingestion.py "C:\Users\ashis\Downloads\Datasets" --limit 10
 ```
 
+Preview how valid Kaggle postings map toward database records:
+
+```powershell
+python scripts/preview_kaggle_database_mapping.py "C:\Users\ashis\Downloads\Datasets" --limit 25
+```
+
 ## Database Foundation
 
 The first PostgreSQL schema draft is in:

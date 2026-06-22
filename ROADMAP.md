@@ -58,6 +58,7 @@ Candidate deliverables:
 - Responsible data collection plan.
 - Local sample ingestion workflow.
 - Source connector interfaces.
+- Kaggle dataset connector and database mapping preview.
 - Initial collection scripts.
 - Raw data storage conventions.
 - Database migrations.

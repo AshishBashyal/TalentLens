@@ -1,4 +1,5 @@
 import re
+from datetime import datetime, timezone
 
 from data_collection.contracts import NormalizedJobPosting, RawJobPosting
 
@@ -27,6 +28,24 @@ def split_skills(skills: str) -> tuple[str, ...]:
     )
 
 
+def normalize_posted_date(posted_date: str) -> str:
+    """Normalize simple epoch timestamps to ISO dates when possible."""
+
+    value = clean_text(posted_date)
+    if not value:
+        return ""
+
+    try:
+        timestamp = float(value)
+    except ValueError:
+        return value
+
+    if timestamp > 10_000_000_000:
+        timestamp = timestamp / 1000
+
+    return datetime.fromtimestamp(timestamp, tz=timezone.utc).date().isoformat()
+
+
 def normalize_job_posting(raw_job: RawJobPosting) -> NormalizedJobPosting:
     """Convert a raw job posting into the first normalized contract."""
 
@@ -44,6 +63,6 @@ def normalize_job_posting(raw_job: RawJobPosting) -> NormalizedJobPosting:
         employment_type=clean_text(raw_job.employment_type).lower(),
         skills=split_skills(raw_job.skills),
         description=clean_text(raw_job.description),
-        posted_date=clean_text(raw_job.posted_date),
+        posted_date=normalize_posted_date(raw_job.posted_date),
         collected_at=raw_job.collected_at,
     )

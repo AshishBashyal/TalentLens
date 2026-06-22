@@ -141,7 +141,7 @@ This is useful for later compensation and benefits analytics.
 
 ## Next Engineering Step
 
-Create a database loading pipeline after reviewing the Kaggle connector output.
+Create a real database loading pipeline after reviewing the database-shaped preview output.
 
 The connector now reads the local dataset directory and converts a limited sample of `postings.csv` into the existing `RawJobPosting` contract.
 
@@ -150,3 +150,11 @@ Preview command:
 ```powershell
 python scripts/preview_kaggle_ingestion.py "C:\Users\ashis\Downloads\Datasets" --limit 10
 ```
+
+Database mapping preview:
+
+```powershell
+python scripts/preview_kaggle_database_mapping.py "C:\Users\ashis\Downloads\Datasets" --limit 25
+```
+
+This preview builds database-shaped records for companies, locations, jobs, salaries, skills, and job-skill relationships without inserting into PostgreSQL.
