@@ -175,6 +175,18 @@ Preview how valid Kaggle postings map toward database records:
 python scripts/preview_kaggle_database_mapping.py "C:\Users\ashis\Downloads\Datasets" --limit 25
 ```
 
+Dry-run a small database load:
+
+```powershell
+python scripts/load_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 100
+```
+
+Apply PostgreSQL migrations when your local database is configured:
+
+```powershell
+python scripts/apply_migrations.py
+```
+
 ## Database Foundation
 
 The first PostgreSQL schema draft is in:

@@ -124,6 +124,14 @@ python scripts/preview_kaggle_database_mapping.py "C:\Users\ashis\Downloads\Data
 
 This prepares database-shaped records in memory and helps validate the ingestion design before writing to PostgreSQL.
 
+Small-batch database loader:
+
+```powershell
+python scripts/load_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 100
+```
+
+This command runs in dry-run mode by default. Add `--apply` only after PostgreSQL migrations have been applied and the preview counts look correct.
+
 ## Preview the Sample Flow
 
 Run:

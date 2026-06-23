@@ -59,6 +59,7 @@ Candidate deliverables:
 - Local sample ingestion workflow.
 - Source connector interfaces.
 - Kaggle dataset connector and database mapping preview.
+- Small-batch PostgreSQL loader with dry-run mode.
 - Initial collection scripts.
 - Raw data storage conventions.
 - Database migrations.

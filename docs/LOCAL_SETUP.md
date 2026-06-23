@@ -67,3 +67,26 @@ database/seeds/job_sources.sql
 
 Actual database automation will be added after the schema and setup flow are reviewed.
 
+## Apply Migrations
+
+After creating the local PostgreSQL database and configuring `.env`, run:
+
+```powershell
+python scripts/apply_migrations.py
+```
+
+## Load A Small Kaggle Batch
+
+Start with a dry run:
+
+```powershell
+python scripts/load_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 100
+```
+
+When the dry run looks correct and PostgreSQL is configured, insert records with:
+
+```powershell
+python scripts/load_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 100 --apply
+```
+
+Use small limits first so validation, duplicate handling, and schema behavior can be reviewed safely.
