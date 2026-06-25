@@ -132,6 +132,14 @@ python scripts/load_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 1
 
 This command runs in dry-run mode by default. Add `--apply` only after PostgreSQL migrations have been applied and the preview counts look correct.
 
+Data quality audit:
+
+```powershell
+python scripts/audit_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 1000
+```
+
+The audit logic lives separately from connectors and loaders so the ingestion pipeline keeps high cohesion and low coupling.
+
 ## Preview the Sample Flow
 
 Run:

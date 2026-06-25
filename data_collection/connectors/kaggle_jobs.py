@@ -1,4 +1,5 @@
 import csv
+from collections.abc import Iterator
 from itertools import islice
 from pathlib import Path
 
@@ -15,13 +16,17 @@ class KaggleJobsConnector:
         self.postings_file = self.dataset_dir / "postings.csv"
 
     def fetch(self, limit: int | None = None) -> list[RawJobPosting]:
+        return list(self.iter_fetch(limit=limit))
+
+    def iter_fetch(self, limit: int | None = None) -> Iterator[RawJobPosting]:
         if not self.postings_file.exists():
             raise FileNotFoundError(f"Missing postings file: {self.postings_file}")
 
         with self.postings_file.open("r", encoding="utf-8-sig", newline="") as csv_file:
             reader = csv.DictReader(csv_file)
             rows = islice(reader, limit) if limit is not None else reader
-            return [self._row_to_raw_job(row) for row in rows]
+            for row in rows:
+                yield self._row_to_raw_job(row)
 
     def _row_to_raw_job(self, row: dict[str, str]) -> RawJobPosting:
         salary = self._format_salary(row)
@@ -59,4 +64,3 @@ class KaggleJobsConnector:
             return f"{currency} {max_salary} {pay_period}".strip()
 
         return ""
-

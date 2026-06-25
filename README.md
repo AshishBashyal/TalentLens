@@ -187,6 +187,12 @@ Apply PostgreSQL migrations when your local database is configured:
 python scripts/apply_migrations.py
 ```
 
+Audit local Kaggle data quality:
+
+```powershell
+python scripts/audit_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 1000
+```
+
 ## Database Foundation
 
 The first PostgreSQL schema draft is in:
