@@ -37,6 +37,20 @@ The most important value for later database work is:
 DATABASE_URL=postgresql://talentlens:talentlens@localhost:5432/talentlens
 ```
 
+## PostgreSQL Setup
+
+Install PostgreSQL locally, then create a database and user that match `.env`.
+
+Example SQL:
+
+```sql
+CREATE DATABASE talentlens;
+CREATE USER talentlens WITH PASSWORD 'talentlens';
+GRANT ALL PRIVILEGES ON DATABASE talentlens TO talentlens;
+```
+
+If you use a different username, password, host, port, or database name, update `DATABASE_URL` in `.env`.
+
 ## Run the API
 
 ```powershell
@@ -90,3 +104,13 @@ python scripts/load_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 1
 ```
 
 Use small limits first so validation, duplicate handling, and schema behavior can be reviewed safely.
+
+## Verify The Database Load
+
+After applying a small load, run:
+
+```powershell
+python scripts/verify_database_load.py
+```
+
+This prints table counts and basic quality checks for loaded records.

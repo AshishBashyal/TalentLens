@@ -193,6 +193,12 @@ Audit local Kaggle data quality:
 python scripts/audit_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 1000
 ```
 
+Verify a PostgreSQL load:
+
+```powershell
+python scripts/verify_database_load.py
+```
+
 ## Database Foundation
 
 The first PostgreSQL schema draft is in:

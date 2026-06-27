@@ -140,6 +140,14 @@ python scripts/audit_kaggle_jobs.py "C:\Users\ashis\Downloads\Datasets" --limit 
 
 The audit logic lives separately from connectors and loaders so the ingestion pipeline keeps high cohesion and low coupling.
 
+Database load verification:
+
+```powershell
+python scripts/verify_database_load.py
+```
+
+Verification logic lives in `database/verification.py` so query checks remain separate from loading logic.
+
 ## Preview the Sample Flow
 
 Run:

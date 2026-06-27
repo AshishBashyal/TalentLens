@@ -61,6 +61,7 @@ Candidate deliverables:
 - Kaggle dataset connector and database mapping preview.
 - Small-batch PostgreSQL loader with dry-run mode.
 - Data quality audit for missing fields, duplicates, salary coverage, and skill coverage.
+- Database load verification for table counts and core quality checks.
 - Initial collection scripts.
 - Raw data storage conventions.
 - Database migrations.
