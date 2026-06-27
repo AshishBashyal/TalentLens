@@ -4,11 +4,13 @@ This guide describes the current Phase 2 development foundation for TalentLens.
 
 ## Prerequisites
 
-- Python 3.11 or newer.
+- Python 3.11, 3.12, or 3.13.
 - Git.
 - PostgreSQL 14 or newer for database work.
 
 The landing page remains a static HTML/CSS/JavaScript page and does not require the API to run.
+
+Python 3.14 is not recommended for this project yet because some data and ML dependencies may not publish stable wheels immediately for the newest Python release.
 
 ## Create a Virtual Environment
 
@@ -39,7 +41,13 @@ DATABASE_URL=postgresql://talentlens:talentlens@localhost:5432/talentlens
 
 ## PostgreSQL Setup
 
-Install PostgreSQL locally, then create a database and user that match `.env`.
+Option 1: use Docker Compose.
+
+```powershell
+docker compose up -d postgres
+```
+
+Option 2: install PostgreSQL locally, then create a database and user that match `.env`.
 
 Example SQL:
 
@@ -50,6 +58,8 @@ GRANT ALL PRIVILEGES ON DATABASE talentlens TO talentlens;
 ```
 
 If you use a different username, password, host, port, or database name, update `DATABASE_URL` in `.env`.
+
+More Docker-specific setup details are in `docs/DOCKER_POSTGRES_SETUP.md`.
 
 ## Run the API
 

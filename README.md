@@ -139,6 +139,8 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+Use Python 3.11, 3.12, or 3.13 for the backend/data environment. Python 3.14 is not recommended yet because some data and ML dependencies may lag behind the newest Python release.
+
 Run the API foundation:
 
 ```powershell
@@ -152,6 +154,10 @@ http://127.0.0.1:8000/health
 ```
 
 More setup details are in `docs/LOCAL_SETUP.md`.
+
+The detailed phase plan is documented in `docs/PHASE_PLAN.md`.
+
+Engineering principles for high cohesion and low coupling are documented in `docs/ENGINEERING_PRINCIPLES.md`.
 
 Preview the local sample ingestion flow:
 
@@ -185,6 +191,12 @@ Apply PostgreSQL migrations when your local database is configured:
 
 ```powershell
 python scripts/apply_migrations.py
+```
+
+PostgreSQL can also be started with Docker:
+
+```powershell
+docker compose up -d postgres
 ```
 
 Audit local Kaggle data quality:

@@ -6,6 +6,8 @@ TalentLens will be built incrementally. The project should avoid jumping straigh
 
 Each phase should produce usable, reviewable progress while keeping the architecture ready for future expansion.
 
+Detailed subphases are maintained in `docs/PHASE_PLAN.md`.
+
 ## Phase 1: Foundation
 
 Status: Complete
@@ -62,6 +64,7 @@ Candidate deliverables:
 - Small-batch PostgreSQL loader with dry-run mode.
 - Data quality audit for missing fields, duplicates, salary coverage, and skill coverage.
 - Database load verification for table counts and core quality checks.
+- Reproducible Docker PostgreSQL setup.
 - Initial collection scripts.
 - Raw data storage conventions.
 - Database migrations.

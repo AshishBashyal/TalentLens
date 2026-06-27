@@ -209,6 +209,8 @@ TalentLens should prioritize:
 - Testable business logic.
 - Extensible analytics interfaces.
 
+The engineering principles for high cohesion and low coupling are documented in `docs/ENGINEERING_PRINCIPLES.md`.
+
 ## Phase 2 Foundation Boundary
 
 Phase 2 begins with project setup, schema planning, API readiness, and data collection design. Real source connectors should be added one at a time after the source access method is reviewed.
