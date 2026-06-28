@@ -24,5 +24,5 @@ def test_quality_queries_cover_core_loader_gaps() -> None:
         "jobs_missing_location",
         "jobs_without_skills",
         "jobs_without_salary",
+        "orphan_skills",
     }
-

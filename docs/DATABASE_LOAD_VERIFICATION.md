@@ -57,10 +57,10 @@ It also reports basic quality checks:
 - Jobs missing location.
 - Jobs without skills.
 - Jobs without salary.
+- Orphan skills without job-skill links.
 
 ## Expected Early Behavior
 
 In early Phase 2, some jobs will not have salary records because salary coverage is sparse in the source dataset. This is expected and should be tracked rather than hidden.
 
 The first loader focuses on jobs, companies, locations, salaries, skills, and job-skill relationships. Industry and benefits loading will come after the core load is verified.
-

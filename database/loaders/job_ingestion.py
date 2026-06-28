@@ -22,6 +22,7 @@ class JobIngestionLoader:
             job_ids = self._upsert_jobs(cursor, source_id, preview["jobs"], company_ids, location_ids)
             salary_count = self._insert_salaries(cursor, preview["salaries"], job_ids)
             job_skill_count = self._upsert_job_skills(cursor, preview["job_skills"], job_ids, skill_ids)
+            orphan_skill_count = self._delete_orphan_skills(cursor)
 
         self.connection.commit()
 
@@ -32,6 +33,7 @@ class JobIngestionLoader:
             "salaries": salary_count,
             "skills": len(skill_ids),
             "job_skills": job_skill_count,
+            "orphan_skills_deleted": orphan_skill_count,
         }
 
     def _upsert_source(self, cursor: object) -> int:
@@ -166,6 +168,12 @@ class JobIngestionLoader:
             )
             job_ids[source_job_id] = cursor.fetchone()[0]
 
+        if job_ids:
+            cursor.execute(
+                "DELETE FROM job_skills WHERE job_id = ANY(%s)",
+                (list(job_ids.values()),),
+            )
+
         return job_ids
 
     def _insert_salaries(
@@ -219,3 +227,15 @@ class JobIngestionLoader:
 
         return upserted
 
+    def _delete_orphan_skills(self, cursor: object) -> int:
+        cursor.execute(
+            """
+            DELETE FROM skills s
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM job_skills js
+                WHERE js.skill_id = s.id
+            )
+            """
+        )
+        return cursor.rowcount

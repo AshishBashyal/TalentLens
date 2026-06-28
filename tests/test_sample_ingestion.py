@@ -4,6 +4,7 @@ from data_collection.connectors.csv_sample import CsvSampleConnector
 from data_processing.cleaning.jobs import (
     normalize_job_posting,
     normalize_posted_date,
+    normalize_skill,
     normalize_title,
     split_skills,
 )
@@ -34,6 +35,11 @@ def test_normalized_title_is_search_friendly() -> None:
 
 def test_skills_are_split_and_normalized() -> None:
     assert split_skills("Python, SQL,  Tableau ") == ("python", "sql", "tableau")
+
+
+def test_long_skill_phrases_are_filtered() -> None:
+    assert normalize_skill("analytical and problem-solving skills with excellent communication") == ""
+    assert normalize_skill("Python") == "python"
 
 
 def test_epoch_milliseconds_are_normalized_to_iso_date() -> None:

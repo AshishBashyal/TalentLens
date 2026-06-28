@@ -53,6 +53,19 @@ The current audit reports:
 - Empty skills records after structured enrichment.
 - Remote records.
 
+## Skill Quality Rule
+
+Kaggle structured skill mappings from `job_skills.csv` and `skills.csv` are preferred over `skills_desc` text because `skills_desc` can contain long prose fragments.
+
+When structured mappings are unavailable, fallback skill text is conservatively filtered:
+
+- Empty labels are removed.
+- Very long labels are removed.
+- Labels with more than six words are removed.
+- Sentence-like fragments are removed.
+
+The PostgreSQL loader also removes orphan skills after refreshing job-skill links, so old messy skill records do not remain in analytics queries after a reload.
+
 ## Cohesion And Coupling Rules
 
 - Connectors read source data only.
@@ -61,4 +74,3 @@ The current audit reports:
 - Transformers shape records for database loading only.
 - Loaders write records only.
 - Scripts orchestrate these pieces without owning business logic.
-

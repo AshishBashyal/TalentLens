@@ -85,6 +85,8 @@ This should map into the TalentLens company dimension.
 
 These files are useful immediately because they provide structured skill labels before we build NLP extraction.
 
+TalentLens prefers this structured skill mapping over `postings.skills_desc`, because `skills_desc` may contain long free-text fragments rather than clean skill labels.
+
 ### `job_industries.csv` and `industries.csv`
 
 `job_industries.csv` maps `job_id` to `industry_id`.

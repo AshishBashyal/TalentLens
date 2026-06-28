@@ -21,11 +21,32 @@ def normalize_title(title: str) -> str:
 def split_skills(skills: str) -> tuple[str, ...]:
     """Split a comma-separated skill field into normalized skill names."""
 
-    return tuple(
-        clean_text(skill).lower()
-        for skill in skills.split(",")
-        if clean_text(skill)
-    )
+    normalized_skills = []
+    for skill in skills.split(","):
+        normalized_skill = normalize_skill(skill)
+        if normalized_skill:
+            normalized_skills.append(normalized_skill)
+
+    return tuple(dict.fromkeys(normalized_skills))
+
+
+def normalize_skill(skill: str) -> str:
+    """Normalize and conservatively filter a single skill label."""
+
+    normalized = clean_text(skill).lower()
+    if not normalized:
+        return ""
+
+    if len(normalized) > 60:
+        return ""
+
+    if len(normalized.split()) > 6:
+        return ""
+
+    if any(marker in normalized for marker in (". ", ": ", "; ")):
+        return ""
+
+    return normalized
 
 
 def normalize_posted_date(posted_date: str) -> str:

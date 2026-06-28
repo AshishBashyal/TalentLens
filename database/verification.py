@@ -38,6 +38,12 @@ QUALITY_QUERIES = {
         LEFT JOIN salaries s ON s.job_id = j.id
         WHERE s.job_id IS NULL;
     """,
+    "orphan_skills": """
+        SELECT COUNT(*)
+        FROM skills s
+        LEFT JOIN job_skills js ON js.skill_id = s.id
+        WHERE js.skill_id IS NULL;
+    """,
 }
 
 
@@ -64,4 +70,3 @@ def verify_database_quality(connection: object) -> dict[str, int]:
             name: int(fetch_single_value(cursor, query))
             for name, query in QUALITY_QUERIES.items()
         }
-

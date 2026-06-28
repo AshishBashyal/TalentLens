@@ -48,10 +48,9 @@ def enrich_jobs_with_kaggle_skills(
 
     for raw_job in raw_jobs:
         mapped_skills = job_skill_map.get(raw_job.source_job_id, ())
-        if mapped_skills and not raw_job.skills.strip():
+        if mapped_skills:
             enriched_jobs.append(replace(raw_job, skills=", ".join(mapped_skills)))
         else:
             enriched_jobs.append(raw_job)
 
     return enriched_jobs
-
